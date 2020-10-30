@@ -26,7 +26,7 @@ class PortesSeeder extends Seeder
         ]);
 
         DB::table('portes')->insert([
-            'porte' => 'Pequeno',
+            'porte' => 'Grande',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
