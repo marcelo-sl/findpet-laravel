@@ -25,8 +25,8 @@
                                         <span class="badge badge-info">{{$pet->situacao->situacao}}</span>
                                 @endswitch
                                 
-                                <h5 class="card-title">{{ $pet->raca }}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">{{$pet->especie->especie}}</h6>
+                                <h5 class="card-title">{{ $pet->especie->especie }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{$pet->raca}}</h6>
                                 <p class="card-text">{{ $pet->descricao }}</p>
                                 <a class="btn btn-outline-secondary" href="/pets/{{$pet->id}}"><i class="fa fa-ellipsis-h"></i> Mais detalhes</a>
                             </div>

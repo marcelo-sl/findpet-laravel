@@ -9,9 +9,17 @@
     {{-- Fontawesome --}}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <title>@yield('title') - Findpet</title>
+    <style>
+        .container-fluid {
+            padding: 0;
+        }
+        .carousel-inner, .carousel-item {
+            height: 92vh;
+        }
+    </style>
 </head>
 <body>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-5 bg-light shadow-sm">
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-5 bg-light shadow-sm" style="height:8vh;">
         <h5 class="my-0 mr-md-auto font-weight-normal"><a class="navbar-brand text-dark" href="/"><i class="fa fa-search"></i> Findpet</a></h5>
         <nav class="d-flex justify-content-between my-2 my-md-0 mr-md-5 ml-md-3" style="width: 180px;">
             <a class="btn btn-outline-dark" href="/"><i class="fa fa-home"></i> Home</a>
@@ -33,6 +41,7 @@
             $(this).next('.custom-file-label').html(fileName);
         })
         $('.alert').alert();
+        $('.carousel').carousel();
         $("#whatsapp").mask("(00) 00000-0000");
     </script>
 </body>
