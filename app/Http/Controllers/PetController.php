@@ -9,6 +9,8 @@ use App\Situacao;
 use App\Contato;
 use App\Porte;
 
+use Illuminate\Support\Str;
+
 class PetController extends Controller
 {
     /**
@@ -18,7 +20,7 @@ class PetController extends Controller
      */
     public function index()
     {
-        $pets = Pet::orderBy('id', 'desc')->with('especie')->get();
+        $pets = Pet::orderBy('id', 'desc')->with('especie', 'situacao')->get();
         return view('pages.pets.index', compact('pets'));
     }
 
@@ -56,6 +58,25 @@ class PetController extends Controller
         $pet->situacao_id = $request->situacao;
         $pet->contato_id = $contato->id;
         $pet->porte_id = $request->porte;
+
+        if ($request->hasFile('imagem') && $request->file('imagem')->isValid()) {
+            $imagem = $request->imagem;
+            $extension = $imagem->extension();
+            if ($extension != 'jpeg' && $extension != 'png' && $extension != 'gif') {
+                $erros = array(
+                    'msg' => 'Aceitamos somente arquivos de imagem [ jpeg, png, gif ]',
+                    'tipo' => 'danger'
+                );
+                $especies = Especie::all();
+                $situacoes = Situacao::all();
+                $portes = Porte::all();
+                $request->flash();
+                return view('pages.pets.create', compact('especies', 'situacoes', 'portes', 'erros'));
+            }
+            $dir = 'pet-' . time();
+            $path = $imagem->storeAs($dir, Str::kebab($imagem->getClientOriginalName()));
+            $pet->imagem = $path;
+        }
         $pet->save();
 
         return redirect('/pets');
